@@ -20,7 +20,7 @@ return new class extends Migration
 
             $table->string('company_name');
             $table->string('company_logo')->nullable();
-            $table->string('website')->nullable();
+            $table->string('website', 255)->nullable();
 
             $table->string('industry')->nullable();
             $table->string('company_size')->nullable();
@@ -28,11 +28,11 @@ return new class extends Migration
 
             $table->text('description')->nullable();
 
-            $table->string('email')->nullable();
+            $table->string('email')->unique()->nullable();
             $table->string('phone',20)->nullable();
 
             $table->string('country')->nullable();
-            $table->string('state')->nullable();
+            $table->boolean('status')->default(true)->comment('1 = Active, 0 = Inactive');            
             $table->string('city')->nullable();
             $table->string('address')->nullable();
             $table->string('pincode',10)->nullable();
@@ -41,6 +41,10 @@ return new class extends Migration
 
             $table->timestamps();
             $table->softDeletes();
+            
+            $table->index('industry');
+            $table->index('city');
+            $table->index('state');
         });
     }
 

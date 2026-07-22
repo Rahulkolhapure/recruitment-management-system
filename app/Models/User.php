@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 #[Fillable([
     'first_name',
@@ -42,7 +43,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function company()
+    public function company() : HasOne
     {
         return $this->hasOne(Company::class);
     }
